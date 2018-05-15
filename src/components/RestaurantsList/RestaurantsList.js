@@ -1,16 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './RestaurantsList.css';
 import RestaurantBox from '../RestaurantBox/RestaurantBox';
 
-const restaurantsList = (props) => {
+const RestaurantsList = (props) => {
   const restaurants = props.restaurants.map(restaurant => (
-    <RestaurantBox restaurant={restaurant}/>
+    <RestaurantBox key={restaurant.id} restaurant={restaurant}/>
   ));
   return (
     <section className="restaurant-list">
       {restaurants}
     </section>
   );
-}
+};
 
-export default restaurantsList;
+RestaurantsList.propTypes = {
+  restaurants: PropTypes.array.isRequired,
+};
+
+export default RestaurantsList;

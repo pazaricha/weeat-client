@@ -1,7 +1,7 @@
 import React from 'react';
 import './SecondaryFilters.css';
 
-const secondaryFilters = (props) => (
+const SecondaryFilters = (props) => (
   <div className="secondary-filters">
     <div className="container">
       <input type="text" placeholder="input 1" className="weeat-filter" />
@@ -11,4 +11,4 @@ const secondaryFilters = (props) => (
   </div>
 );
 
-export default secondaryFilters;
+export default SecondaryFilters;
