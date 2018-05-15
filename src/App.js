@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Header from './containers/Header/Header';
 import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap';
 import axios from './axios';
