@@ -31,21 +31,21 @@ const SecondaryFilters = (props) => {
     <div className="secondary-filters">
       <div className="container">
         <div className="weeat-filter-wrapper">
-          <label htmlFor="cuisine">Cuisine:</label>
+          <label htmlFor="cuisine">Cuisine</label>
           <select name="cuisine" className="weeat-filter" onChange={this.handleCuisineFilterChange}>
             <option value="0">Choose a cuisine...</option>
             {cuisineOptions}
           </select>
         </div>
         <div className="weeat-filter-wrapper">
-          <label htmlFor="rating">Minimal Rating:</label>
+          <label htmlFor="rating">Minimal Rating</label>
           <select name="rating" className="weeat-filter" onChange={this.handleRatingFilterChange}>
             <option value="0">How many stars...</option>
             {ratingOptions}
           </select>
         </div>
         <div className="weeat-filter-wrapper">
-          <label htmlFor="delivery">Maximum Delivery Time:</label>
+          <label htmlFor="delivery">Maximum Delivery Time</label>
           <select name="delivery" className="weeat-filter" onChange={this.handleDeliveryFilterChange}>
             <option value="0">How long will it be...</option>
             {deliveryOptions}

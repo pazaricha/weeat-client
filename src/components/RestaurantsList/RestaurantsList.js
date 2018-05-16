@@ -33,7 +33,7 @@ const RestaurantsList = (props) => {
   });
 
   return (
-    <section className="restaurant-list">
+    <section className="restaurants-list">
       Showing {restaurants.length} restaurants
       {restaurants}
     </section>

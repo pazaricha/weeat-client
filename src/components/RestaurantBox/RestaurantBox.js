@@ -24,7 +24,6 @@ const RestaurantBox = (props) => {
           edit={false}
           className={'stars-rating'}
         />
-        {restaurant.maximum_delivery_time}
       </div>
     </div>
   );

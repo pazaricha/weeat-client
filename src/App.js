@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './containers/Header/Header';
 import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap';
 import axios from './axios';
+import fetch from 'whatwg-fetch';
 
 class App extends Component {
   state = {
