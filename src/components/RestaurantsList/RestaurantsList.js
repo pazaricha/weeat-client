@@ -4,11 +4,11 @@ import './RestaurantsList.css';
 import RestaurantBox from '../RestaurantBox/RestaurantBox';
 
 const RestaurantsList = (props) => {
-  const restaurantNameFilterValue = props.restaurantNameFilterValue;
+  const restaurantNameFilterValue = props.restaurantNameFilterValue.toLowerCase();
   const restaurants = [];
 
   props.restaurants.forEach(restaurant => {
-    if (restaurant.name.indexOf(restaurantNameFilterValue) === -1) {
+    if (restaurant.name.toLowerCase().indexOf(restaurantNameFilterValue) === -1) {
       return;
     }
 
@@ -26,6 +26,7 @@ const RestaurantsList = (props) => {
 
 RestaurantsList.propTypes = {
   restaurants: PropTypes.array.isRequired,
+  restaurantNameFilterValue: PropTypes.string,
 };
 
 export default RestaurantsList;

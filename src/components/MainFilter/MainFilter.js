@@ -1,5 +1,6 @@
 import React from 'react';
-import './MainFilter.css'
+import PropTypes from 'prop-types';
+import './MainFilter.css';
 
 const MainFilter = (props) => {
   this.handleFilterTextChange = (e) => {
@@ -16,5 +17,8 @@ const MainFilter = (props) => {
   );
 };
 
+MainFilter.propTypes = {
+  onRestaurantNameFilterChange: PropTypes.func.isRequired,
+};
 
 export default MainFilter;
