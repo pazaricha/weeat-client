@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './RestaurantIcon.css';
 
-const cuisine_icons_map = {
+const cuisineIconsMap = {
   'American': 'R',
   'Asian': 'G',
   'Bagels': 'V',
@@ -40,7 +40,7 @@ const cuisine_icons_map = {
 };
 
 const RestaurantIcon = (props) => {
-  const icon = cuisine_icons_map[props.icon] || cuisine_icons_map['default']
+  const icon = cuisineIconsMap[props.icon] || cuisineIconsMap.default;
 
   return (
     <span className="restaurant-icon" data-name={props.icon} title={props.icon}>{icon}</span>

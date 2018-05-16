@@ -7,6 +7,7 @@ const RestaurantsList = (props) => {
   const restaurants = props.restaurants.map(restaurant => (
     <RestaurantBox key={restaurant.id} restaurant={restaurant}/>
   ));
+
   return (
     <section className="restaurant-list">
       {restaurants}
