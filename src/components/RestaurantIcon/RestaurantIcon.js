@@ -43,7 +43,7 @@ const RestaurantIcon = (props) => {
   const icon = cuisine_icons_map[props.icon] || cuisine_icons_map['default']
 
   return (
-    <span className="restaurant-icon" data-name={props.icon}>{icon}</span>
+    <span className="restaurant-icon" data-name={props.icon} title={props.icon}>{icon}</span>
   );
 };
 

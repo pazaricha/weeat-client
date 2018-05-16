@@ -9,12 +9,12 @@
   transition: all 0.15s;
 
   &:hover {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.35);
     top: -1px;
   }
 
   &:active {
-    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(0, 0, 0, 0.35);
     background: #fefefe;
     top: 0px;
   }
@@ -23,7 +23,7 @@
     display: inline-block;
     vertical-align: middle;
     font-size: 40px;
-    margin-right: 10px;
+    margin-right: 15px;
     width: 30px;
     color: $weeat-red;
   }
@@ -38,7 +38,7 @@
   .details {
     display: inline-block;
     vertical-align: middle;
-    width: 90%;
+    width: 85%;
   }
 
   h4 {
@@ -46,13 +46,18 @@
     vertical-align: top;
     font-size: 20px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .rating {
-    font-size: 14px;
+  .address {
+    font-size: 13px;
+    color: #777;
+  }
+
+  .stars-rating {
+    margin-top: 5px;
   }
 }

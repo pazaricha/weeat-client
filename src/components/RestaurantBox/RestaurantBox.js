@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './RestaurantBox.css';
 import RestaurantIcon from '../RestaurantIcon/RestaurantIcon';
-import tenbis_image from '../../images/tenbis.jpg'
+import tenbisImage from '../../images/tenbis.jpg';
+import ReactStars from 'react-stars';
 
 const RestaurantBox = (props) => {
   const restaurant = props.restaurant;
@@ -13,9 +14,16 @@ const RestaurantBox = (props) => {
       <div className="details">
         <div className="restaurant-title">
           <h4 title={restaurant.name}>{restaurant.name}</h4>
-          <span>{restaurant.tenbis ? <img className="tenbis" src={tenbis_image} title="Tenbis" /> : ''}</span>
+          <span>{restaurant.tenbis ? <img className="tenbis" src={tenbisImage} title="Tenbis" /> : ''}</span>
         </div>
-        <p className="rating">Rating: * * * *</p>
+        <p className="address">{restaurant.address}</p>
+        <ReactStars
+          count={5}
+          value={restaurant.rating}
+          size={16}
+          edit={false}
+          className={'stars-rating'}
+        />
       </div>
     </div>
   );
