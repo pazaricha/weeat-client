@@ -1,3 +1,5 @@
+@import "colors";
+
 @font-face {
   font-family: 'ef_cuisinesregular';
   src: url("./fonts/efcuisines-regular-webfont.eot");
@@ -12,7 +14,7 @@
 body {
   margin: 0;
   padding: 0;
-  background: #eaf4f7;
+  background: $weeat-bg;
   font-family: 'Varela Round', sans-serif;
 }
 
@@ -41,8 +43,10 @@ p {
   font-size: 14px;
   line-height: 40px;
   padding: 0 10px;
+  outline: 0;
+  appearance: none;
 }
 
 .cuisine-font {
-  font-family: 'ef_cuisinesregular';
+  font-family: "ef_cuisinesregular";
 }
