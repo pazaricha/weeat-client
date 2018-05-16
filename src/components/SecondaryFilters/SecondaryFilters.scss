@@ -13,11 +13,23 @@
   .weeat-filter-wrapper {
     flex: .3;
     text-align: left;
+    position: relative;
 
     label {
       display: block;
       margin-bottom: 5px;
       color: #fff;
+    }
+
+    &:before {
+      position: absolute;
+      display: block;
+      bottom: 15px;
+      right: 15px;
+      content: '▼';
+      font-size: 10px;
+      z-index: 1;
+      color: #000;
     }
   }
 
