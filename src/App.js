@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './containers/Header/Header';
+import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap';
+import axios from './axios';
 
 class App extends Component {
+  state = {
+    restaurants: [],
+  }
+
+  componentDidMount() {
+    axios.get('/restaurants.json')
+      .then(response => {
+        this.setState({ restaurants: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Reacssst</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Header />
+        <RestaurantsAndMap restaurants={this.state.restaurants} />
       </div>
     );
   }

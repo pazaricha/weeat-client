@@ -225,7 +225,7 @@
     //
     "jsx-quotes": [2, "prefer-double"], // Enforce quote style for JSX attributes
     "react/display-name": 0, // Prevent missing displayName in a React component definition
-    "react/jsx-filename-extension": 1, // component files should be .jsx
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], // component files should be .jsx
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-target-blank": 2,
     "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX

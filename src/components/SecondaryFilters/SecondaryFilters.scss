@@ -1,0 +1,17 @@
+@import '_colors';
+
+.secondary-filters {
+  background: $weeat-red;
+  margin-top: 40px;
+  padding: 15px 0;
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    input {
+      flex: .3;
+      padding: 0 15px;
+    }
+  }
+}
