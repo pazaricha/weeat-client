@@ -6,6 +6,7 @@ import axios from './axios';
 class App extends Component {
   state = {
     restaurants: [],
+    restaurantNameFilterValue: '',
   }
 
   componentDidMount() {
@@ -18,11 +19,15 @@ class App extends Component {
       });
   }
 
+  handleResturantNameFilterChange = (restaurantName) => {
+    this.setState({ restaurantNameFilterValue: restaurantName });
+  }
+
   render() {
     return (
       <div className="App">
-        <Header />
-        <RestaurantsAndMap restaurants={this.state.restaurants} />
+        <Header onRestaurantNameFilterChange={this.handleResturantNameFilterChange}/>
+        <RestaurantsAndMap restaurants={this.state.restaurants} restaurantNameFilterValue={this.state.restaurantNameFilterValue} />
       </div>
     );
   }

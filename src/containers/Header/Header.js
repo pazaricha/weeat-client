@@ -9,7 +9,7 @@ const header = (props) => (
     <div className="container">
       <h1 className="logo">WeEat 🥙</h1>
       <h2>It's 12:00 and you're hungry 😛</h2>
-      <MainFilter />
+      <MainFilter onRestaurantNameFilterChange={props.onRestaurantNameFilterChange} />
       <AddRestaurantButton />
     </div>
     <SecondaryFilters />

@@ -4,9 +4,18 @@ import './RestaurantsList.css';
 import RestaurantBox from '../RestaurantBox/RestaurantBox';
 
 const RestaurantsList = (props) => {
-  const restaurants = props.restaurants.map(restaurant => (
-    <RestaurantBox key={restaurant.id} restaurant={restaurant}/>
-  ));
+  const restaurantNameFilterValue = props.restaurantNameFilterValue;
+  const restaurants = [];
+
+  props.restaurants.forEach(restaurant => {
+    if (restaurant.name.indexOf(restaurantNameFilterValue) === -1) {
+      return;
+    }
+
+    restaurants.push(
+      <RestaurantBox key={restaurant.id} restaurant={restaurant}/>
+    );
+  });
 
   return (
     <section className="restaurant-list">

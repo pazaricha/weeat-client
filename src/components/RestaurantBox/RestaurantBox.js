@@ -19,7 +19,7 @@ const RestaurantBox = (props) => {
         <p className="address">{restaurant.address}</p>
         <ReactStars
           count={5}
-          value={restaurant.rating}
+          value={parseFloat(restaurant.rating)}
           size={16}
           edit={false}
           className={'stars-rating'}
