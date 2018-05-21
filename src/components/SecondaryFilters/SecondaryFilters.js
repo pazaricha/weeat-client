@@ -19,7 +19,7 @@ const SecondaryFilters = (props) => {
 
   if (props.cuisinesError !== '') {
     cuisineOptions = (
-      <option value="-1">Cuisines can't be loaded. {props.cuisinesError.toString()}</option>
+      <option value="-1">{"Cuisines can't be loaded. " + props.cuisinesError.toString()}</option>
     );
   } else {
     cuisineOptions = props.cuisines.map(cuisine => (
