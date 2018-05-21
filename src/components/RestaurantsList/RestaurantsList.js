@@ -28,7 +28,11 @@ const RestaurantsList = (props) => {
     }
 
     restaurants.push(
-      <RestaurantBox key={restaurant.id} restaurant={restaurant}/>
+      <RestaurantBox
+        key={restaurant.id}
+        restaurant={restaurant}
+        onRestaurantBoxClick={props.onRestaurantBoxClick}
+      />
     );
   });
 
@@ -46,6 +50,7 @@ RestaurantsList.propTypes = {
   restaurantCuisineFilterValue: PropTypes.number,
   restaurantRatingFilterValue: PropTypes.number,
   restaurantDeliveryFilterValue: PropTypes.number,
+  onRestaurantBoxClick: PropTypes.func,
 };
 
 export default RestaurantsList;
