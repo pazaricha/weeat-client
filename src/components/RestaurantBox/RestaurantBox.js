@@ -12,7 +12,6 @@ const RestaurantBox = (props) => {
     props.onRestaurantBoxClick(restaurant.latitude, restaurant.longitude, restaurant.id);
   };
 
-
   return (
     <div className="restaurant-box" onClick={this.handleRestaurantBoxClick}>
       <RestaurantIcon icon={restaurant.cuisine.name}/>
