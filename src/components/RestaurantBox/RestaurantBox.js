@@ -8,8 +8,12 @@ import ReactStars from 'react-stars';
 const RestaurantBox = (props) => {
   const restaurant = props.restaurant;
 
+  this.handleRestaurantBoxClick = () => {
+    props.onRestaurantBoxClick(restaurant.latitude, restaurant.longitude, restaurant.id);
+  };
+
   return (
-    <div className="restaurant-box">
+    <div className="restaurant-box" onClick={this.handleRestaurantBoxClick}>
       <RestaurantIcon icon={restaurant.cuisine.name}/>
       <div className="details">
         <div className="restaurant-title">
@@ -31,6 +35,7 @@ const RestaurantBox = (props) => {
 
 RestaurantBox.propTypes = {
   restaurant: PropTypes.object.isRequired,
+  onRestaurantBoxClick: PropTypes.func,
 };
 
 export default RestaurantBox;
