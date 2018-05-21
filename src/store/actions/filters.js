@@ -27,4 +27,3 @@ export const deliveryFilterChange = (filterValue) => {
     filterValue: filterValue,
   };
 };
-

@@ -25,6 +25,7 @@ class RestaurantsAndMap extends Component {
         <div className="container">
           <RestaurantsList
             restaurants={this.props.restaurants}
+            restaurantsError={this.props.restaurantsError}
             restaurantNameFilterValue={this.props.restaurantNameFilterValue}
             restaurantCuisineFilterValue={this.props.restaurantCuisineFilterValue}
             restaurantRatingFilterValue={this.props.restaurantRatingFilterValue}
@@ -45,6 +46,7 @@ class RestaurantsAndMap extends Component {
 
 RestaurantsAndMap.propTypes = {
   restaurants: PropTypes.array.isRequired,
+  restaurantsError: PropTypes.string,
   restaurantNameFilterValue: PropTypes.string,
   restaurantCuisineFilterValue: PropTypes.number,
   restaurantRatingFilterValue: PropTypes.number,

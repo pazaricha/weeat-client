@@ -3,30 +3,12 @@ import Header from './containers/Header/Header';
 import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap';
 import axios from './axios';
 import { connect } from 'react-redux';
-import * as filtersActions from './store/actions/index';
+import * as actions from './store/actions/index';
 
 class App extends Component {
-  state = {
-    restaurants: [],
-    cuisines: [],
-  }
-
   componentDidMount() {
-    axios.get('/restaurants.json')
-      .then(response => {
-        this.setState({ restaurants: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    axios.get('/cuisines.json')
-      .then(response => {
-        this.setState({ cuisines: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.props.onInitRestaurants();
+    this.props.onInitCuisines();
   }
 
   render() {
@@ -37,10 +19,12 @@ class App extends Component {
           onRestaurantCuisineFilterChange={this.props.onRestaurantCuisineFilterChange}
           onRestaurantRatingFilterChange={this.props.onRestaurantRatingFilterChange}
           onRestaurantDeliveryFilterChange={this.props.onRestaurantDeliveryFilterChange}
-          cuisines={this.state.cuisines}
+          cuisines={this.props.cuisines}
+          cuisinesError={this.props.cuisinesError}
         />
         <RestaurantsAndMap
-          restaurants={this.state.restaurants}
+          restaurants={this.props.restaurants}
+          restaurantsError={this.props.restaurantsError}
           restaurantNameFilterValue={this.props.restaurantNameFilterValue}
           restaurantCuisineFilterValue={this.props.restaurantCuisineFilterValue}
           restaurantRatingFilterValue={this.props.restaurantRatingFilterValue}
@@ -53,21 +37,25 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    restaurants: state.restaurants,
-    cuisines: state.cuisines,
-    restaurantNameFilterValue: state.restaurantNameFilterValue,
-    restaurantCuisineFilterValue: state.restaurantCuisineFilterValue,
-    restaurantRatingFilterValue: state.restaurantRatingFilterValue,
-    restaurantDeliveryFilterValue: state.restaurantDeliveryFilterValue,
+    restaurants: state.restaurants.restaurants,
+    restaurantsError: state.restaurants.error,
+    cuisines: state.cuisines.cuisines,
+    cuisinesError: state.cuisines.error,
+    restaurantNameFilterValue: state.filters.restaurantNameFilterValue,
+    restaurantCuisineFilterValue: state.filters.restaurantCuisineFilterValue,
+    restaurantRatingFilterValue: state.filters.restaurantRatingFilterValue,
+    restaurantDeliveryFilterValue: state.filters.restaurantDeliveryFilterValue,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onRestaurantNameFilterChange: (restaurantName) => dispatch(filtersActions.nameFilterChange(restaurantName)),
-    onRestaurantCuisineFilterChange: (cuisineId) => dispatch(filtersActions.cuisineFilterChange(cuisineId)),
-    onRestaurantRatingFilterChange: (numOfStars) => dispatch(filtersActions.ratingFilterChange(numOfStars)),
-    onRestaurantDeliveryFilterChange: (deliveryMinutes) => dispatch(filtersActions.deliveryFilterChange(deliveryMinutes)),
+    onInitRestaurants: () => dispatch(actions.initRestaurants()),
+    onInitCuisines: () => dispatch(actions.initCuisines()),
+    onRestaurantNameFilterChange: (restaurantName) => dispatch(actions.nameFilterChange(restaurantName)),
+    onRestaurantCuisineFilterChange: (cuisineId) => dispatch(actions.cuisineFilterChange(cuisineId)),
+    onRestaurantRatingFilterChange: (numOfStars) => dispatch(actions.ratingFilterChange(numOfStars)),
+    onRestaurantDeliveryFilterChange: (deliveryMinutes) => dispatch(actions.deliveryFilterChange(deliveryMinutes)),
   };
 };
 
