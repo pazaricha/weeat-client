@@ -4,6 +4,7 @@ import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap'
 import axios from './axios';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/index';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   componentDidMount() {
@@ -34,6 +35,23 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  restaurants: PropTypes.array.isRequired,
+  restaurantsError: PropTypes.string,
+  cuisines: PropTypes.array.isRequired,
+  cuisinesError: PropTypes.string,
+  onInitRestaurants: PropTypes.func.isRequired,
+  onInitCuisines: PropTypes.func.isRequired,
+  onRestaurantNameFilterChange: PropTypes.func.isRequired,
+  onRestaurantCuisineFilterChange: PropTypes.func.isRequired,
+  onRestaurantRatingFilterChange: PropTypes.func.isRequired,
+  onRestaurantDeliveryFilterChange: PropTypes.func.isRequired,
+  restaurantNameFilterValue: PropTypes.string,
+  restaurantCuisineFilterValue: PropTypes.number,
+  restaurantRatingFilterValue: PropTypes.number,
+  restaurantDeliveryFilterValue: PropTypes.number,
+};
 
 const mapStateToProps = state => {
   return {
