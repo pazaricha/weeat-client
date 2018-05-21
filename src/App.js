@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import Header from './containers/Header/Header';
 import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap';
 import axios from './axios';
+import { connect } from 'react-redux';
+import * as filtersActions from './store/actions/index';
 
 class App extends Component {
   state = {
     restaurants: [],
     cuisines: [],
-    restaurantNameFilterValue: '',
-    restaurantCuisineFilterValue: 0,
-    restaurantRatingFilterValue: 0,
-    restaurantDeliveryFilterValue: 0,
   }
 
   componentDidMount() {
@@ -31,42 +29,46 @@ class App extends Component {
       });
   }
 
-  handleResturantNameFilterChange = (restaurantName) => {
-    this.setState({ restaurantNameFilterValue: restaurantName });
-  }
-
-  handleResturantCuisineFilterChange = (cuisineId) => {
-    this.setState({ restaurantCuisineFilterValue: cuisineId });
-  }
-
-  handleResturantRatingFilterChange = (numOfStars) => {
-    this.setState({ restaurantRatingFilterValue: numOfStars });
-  }
-
-  handleResturantDeliveryFilterChange = (deliveryMinutes) => {
-    this.setState({ restaurantDeliveryFilterValue: deliveryMinutes });
-  }
-
   render() {
     return (
       <div className="App">
         <Header
-          onRestaurantNameFilterChange={this.handleResturantNameFilterChange}
-          onRestaurantCuisineFilterChange={this.handleResturantCuisineFilterChange}
-          onRestaurantRatingFilterChange={this.handleResturantRatingFilterChange}
-          onRestaurantDeliveryFilterChange={this.handleResturantDeliveryFilterChange}
+          onRestaurantNameFilterChange={this.props.onRestaurantNameFilterChange}
+          onRestaurantCuisineFilterChange={this.props.onRestaurantCuisineFilterChange}
+          onRestaurantRatingFilterChange={this.props.onRestaurantRatingFilterChange}
+          onRestaurantDeliveryFilterChange={this.props.onRestaurantDeliveryFilterChange}
           cuisines={this.state.cuisines}
         />
         <RestaurantsAndMap
           restaurants={this.state.restaurants}
-          restaurantNameFilterValue={this.state.restaurantNameFilterValue}
-          restaurantCuisineFilterValue={this.state.restaurantCuisineFilterValue}
-          restaurantRatingFilterValue={this.state.restaurantRatingFilterValue}
-          restaurantDeliveryFilterValue={this.state.restaurantDeliveryFilterValue}
+          restaurantNameFilterValue={this.props.restaurantNameFilterValue}
+          restaurantCuisineFilterValue={this.props.restaurantCuisineFilterValue}
+          restaurantRatingFilterValue={this.props.restaurantRatingFilterValue}
+          restaurantDeliveryFilterValue={this.props.restaurantDeliveryFilterValue}
         />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurants,
+    cuisines: state.cuisines,
+    restaurantNameFilterValue: state.restaurantNameFilterValue,
+    restaurantCuisineFilterValue: state.restaurantCuisineFilterValue,
+    restaurantRatingFilterValue: state.restaurantRatingFilterValue,
+    restaurantDeliveryFilterValue: state.restaurantDeliveryFilterValue,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onRestaurantNameFilterChange: (restaurantName) => dispatch(filtersActions.nameFilterChange(restaurantName)),
+    onRestaurantCuisineFilterChange: (cuisineId) => dispatch(filtersActions.cuisineFilterChange(cuisineId)),
+    onRestaurantRatingFilterChange: (numOfStars) => dispatch(filtersActions.ratingFilterChange(numOfStars)),
+    onRestaurantDeliveryFilterChange: (deliveryMinutes) => dispatch(filtersActions.deliveryFilterChange(deliveryMinutes)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
