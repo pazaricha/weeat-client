@@ -5,9 +5,7 @@ import './RestaurantsList.css';
 
 const RestaurantsList = (props) => {
   const restaurantNameFilterValue = props.restaurantNameFilterValue.toLowerCase();
-  const restaurantCuisineFilterValue = props.restaurantCuisineFilterValue;
-  const restaurantRatingFilterValue = props.restaurantRatingFilterValue;
-  const restaurantDeliveryFilterValue = props.restaurantDeliveryFilterValue;
+  const { restaurantCuisineFilterValue, restaurantRatingFilterValue, restaurantDeliveryFilterValue } = props;
   const restaurants = [];
 
   props.restaurants.forEach(restaurant => {
