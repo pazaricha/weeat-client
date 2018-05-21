@@ -34,6 +34,9 @@ const RestaurantsMap = (props) => {
   return (
     <div className="map-wrapper" style={{ height: '100vh', width: '60%', display: 'inline-block', verticalAlign: 'top' }}>
       <GoogleMapReact
+        bootstrapURLKeys={{
+          key: 'AIzaSyCMYVdjkRobvAvklIp0_GHqUNwUA_Zkxc0'
+        }}
         defaultCenter={defaultMapProps.center}
         defaultZoom={defaultMapProps.zoom}
         center={mapProps.center}
