@@ -1,4 +1,4 @@
-@import '_colors';
+@import "colors";
 
 .secondary-filters {
   background: $weeat-red;
@@ -8,10 +8,40 @@
   .container {
     display: flex;
     justify-content: space-between;
+  }
 
-    input {
-      flex: .3;
-      padding: 0 15px;
+  .weeat-filter-wrapper {
+    flex: .3;
+    text-align: left;
+    position: relative;
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+
+    &:before {
+      position: absolute;
+      display: block;
+      bottom: 15px;
+      right: 15px;
+      content: '▼';
+      font-size: 10px;
+      z-index: 1;
+      color: #000;
+    }
+  }
+
+  .weeat-filter {
+    width: 100%;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #fff;
+    transition: all 0.25s;
+
+    &:focus {
+      border-color: $weeat-black;
     }
   }
 }

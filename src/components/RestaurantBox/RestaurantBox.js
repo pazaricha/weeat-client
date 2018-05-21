@@ -14,12 +14,12 @@ const RestaurantBox = (props) => {
       <div className="details">
         <div className="restaurant-title">
           <h4 title={restaurant.name}>{restaurant.name}</h4>
-          <span>{restaurant.tenbis ? <img className="tenbis" src={tenbisImage} title="Tenbis" /> : ''}</span>
+          <span>{restaurant.tenbis ? <img className="tenbis" src={tenbisImage} title="Tenbis" alt="Tenbis" /> : ''}</span>
         </div>
         <p className="address">{restaurant.address}</p>
         <ReactStars
           count={5}
-          value={restaurant.rating}
+          value={Math.round(restaurant.rating)}
           size={16}
           edit={false}
           className={'stars-rating'}

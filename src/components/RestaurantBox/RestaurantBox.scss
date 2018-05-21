@@ -1,4 +1,4 @@
-@import '_colors';
+@import "colors";
 
 .restaurant-box {
   background: #fff;
@@ -50,6 +50,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 90%;
   }
 
   .address {
