@@ -12,7 +12,7 @@ describe('<RestaurantsMap />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<RestaurantsMap restaurants={[]}  />);
+    wrapper = shallow(<RestaurantsMap restaurants={[]} />);
   });
 
   it('should contain a GoogleMapReact component', () => {
@@ -23,7 +23,7 @@ describe('<RestaurantsMap />', () => {
     let googleMapProps;
 
     beforeEach(() => {
-      googleMapProps = wrapper.find(GoogleMapReact).props()
+      googleMapProps = wrapper.find(GoogleMapReact).props();
     });
 
     describe('when activeRestaurantId is null', () => {
@@ -38,7 +38,7 @@ describe('<RestaurantsMap />', () => {
         activeRestaurantId: 1,
         activeRestaurantLat: 10,
         activeRestaurantLong: 20
-      }
+      };
 
       beforeEach(() => {
         wrapper.setProps(restaurantProps);
