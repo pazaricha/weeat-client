@@ -15,6 +15,7 @@ const Header = (props) => (
     </div>
     <SecondaryFilters
       cuisines={props.cuisines}
+      cuisinesError={props.cuisinesError}
       onRestaurantCuisineFilterChange={props.onRestaurantCuisineFilterChange}
       onRestaurantRatingFilterChange={props.onRestaurantRatingFilterChange}
       onRestaurantDeliveryFilterChange={props.onRestaurantDeliveryFilterChange}
@@ -23,10 +24,12 @@ const Header = (props) => (
 );
 
 Header.propTypes = {
+  cuisines: PropTypes.array.isRequired,
+  cuisinesError: PropTypes.string,
   onRestaurantNameFilterChange: PropTypes.func.isRequired,
   onRestaurantCuisineFilterChange: PropTypes.func.isRequired,
+  onRestaurantRatingFilterChange: PropTypes.func.isRequired,
   onRestaurantDeliveryFilterChange: PropTypes.func.isRequired,
-  cuisines: PropTypes.array.isRequired,
 };
 
 export default Header;

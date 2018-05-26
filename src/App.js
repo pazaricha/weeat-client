@@ -1,72 +1,79 @@
 import React, { Component } from 'react';
 import Header from './containers/Header/Header';
 import RestaurantsAndMap from './containers/RestaurantsAndMap/RestaurantsAndMap';
-import axios from './axios';
+import { connect } from 'react-redux';
+import * as actions from './store/actions/index';
+import PropTypes from 'prop-types';
 
 class App extends Component {
-  state = {
-    restaurants: [],
-    cuisines: [],
-    restaurantNameFilterValue: '',
-    restaurantCuisineFilterValue: 0,
-    restaurantRatingFilterValue: 0,
-    restaurantDeliveryFilterValue: 0,
-  }
-
   componentDidMount() {
-    axios.get('/restaurants.json')
-      .then(response => {
-        this.setState({ restaurants: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-    axios.get('/cuisines.json')
-      .then(response => {
-        this.setState({ cuisines: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  handleResturantNameFilterChange = (restaurantName) => {
-    this.setState({ restaurantNameFilterValue: restaurantName });
-  }
-
-  handleResturantCuisineFilterChange = (cuisineId) => {
-    this.setState({ restaurantCuisineFilterValue: cuisineId });
-  }
-
-  handleResturantRatingFilterChange = (numOfStars) => {
-    this.setState({ restaurantRatingFilterValue: numOfStars });
-  }
-
-  handleResturantDeliveryFilterChange = (deliveryMinutes) => {
-    this.setState({ restaurantDeliveryFilterValue: deliveryMinutes });
+    this.props.onInitRestaurants();
+    this.props.onInitCuisines();
   }
 
   render() {
     return (
       <div className="App">
         <Header
-          onRestaurantNameFilterChange={this.handleResturantNameFilterChange}
-          onRestaurantCuisineFilterChange={this.handleResturantCuisineFilterChange}
-          onRestaurantRatingFilterChange={this.handleResturantRatingFilterChange}
-          onRestaurantDeliveryFilterChange={this.handleResturantDeliveryFilterChange}
-          cuisines={this.state.cuisines}
+          onRestaurantNameFilterChange={this.props.onRestaurantNameFilterChange}
+          onRestaurantCuisineFilterChange={this.props.onRestaurantCuisineFilterChange}
+          onRestaurantRatingFilterChange={this.props.onRestaurantRatingFilterChange}
+          onRestaurantDeliveryFilterChange={this.props.onRestaurantDeliveryFilterChange}
+          cuisines={this.props.cuisines}
+          cuisinesError={this.props.cuisinesError}
         />
         <RestaurantsAndMap
-          restaurants={this.state.restaurants}
-          restaurantNameFilterValue={this.state.restaurantNameFilterValue}
-          restaurantCuisineFilterValue={this.state.restaurantCuisineFilterValue}
-          restaurantRatingFilterValue={this.state.restaurantRatingFilterValue}
-          restaurantDeliveryFilterValue={this.state.restaurantDeliveryFilterValue}
+          restaurants={this.props.restaurants}
+          restaurantsError={this.props.restaurantsError}
+          restaurantNameFilterValue={this.props.restaurantNameFilterValue}
+          restaurantCuisineFilterValue={this.props.restaurantCuisineFilterValue}
+          restaurantRatingFilterValue={this.props.restaurantRatingFilterValue}
+          restaurantDeliveryFilterValue={this.props.restaurantDeliveryFilterValue}
         />
       </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  restaurants: PropTypes.array.isRequired,
+  restaurantsError: PropTypes.string,
+  cuisines: PropTypes.array.isRequired,
+  cuisinesError: PropTypes.string,
+  onInitRestaurants: PropTypes.func.isRequired,
+  onInitCuisines: PropTypes.func.isRequired,
+  onRestaurantNameFilterChange: PropTypes.func.isRequired,
+  onRestaurantCuisineFilterChange: PropTypes.func.isRequired,
+  onRestaurantRatingFilterChange: PropTypes.func.isRequired,
+  onRestaurantDeliveryFilterChange: PropTypes.func.isRequired,
+  restaurantNameFilterValue: PropTypes.string,
+  restaurantCuisineFilterValue: PropTypes.number,
+  restaurantRatingFilterValue: PropTypes.number,
+  restaurantDeliveryFilterValue: PropTypes.number,
+};
+
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurants.restaurants,
+    restaurantsError: state.restaurants.error,
+    cuisines: state.cuisines.cuisines,
+    cuisinesError: state.cuisines.error,
+    restaurantNameFilterValue: state.filters.restaurantNameFilterValue,
+    restaurantCuisineFilterValue: state.filters.restaurantCuisineFilterValue,
+    restaurantRatingFilterValue: state.filters.restaurantRatingFilterValue,
+    restaurantDeliveryFilterValue: state.filters.restaurantDeliveryFilterValue,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitRestaurants: () => dispatch(actions.initRestaurants()),
+    onInitCuisines: () => dispatch(actions.initCuisines()),
+    onRestaurantNameFilterChange: (restaurantName) => dispatch(actions.nameFilterChange(restaurantName)),
+    onRestaurantCuisineFilterChange: (cuisineId) => dispatch(actions.cuisineFilterChange(cuisineId)),
+    onRestaurantRatingFilterChange: (numOfStars) => dispatch(actions.ratingFilterChange(numOfStars)),
+    onRestaurantDeliveryFilterChange: (deliveryMinutes) => dispatch(actions.deliveryFilterChange(deliveryMinutes)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
